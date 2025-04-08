@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATHYA R - Full Stack Python Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #34495e; /* Dark Slate Gray */
+            --accent-color: #0e164a; /* Coral Red */
+            --bg-light: #f4f4f4;
+            --text-dark: #333;
+            --text-light: #fff;
+            --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-body: 'Georgia', serif;
+            --border-radius: 8px;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            transition: background-color var(--transition-speed);
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 30px 0;
+        }
+
+        .main-content, .sidebar {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            text-align: center;
+        }
+
+        .sidebar img {
+            max-width: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        /* About Section */
+        #about {
+            display: flex;
+            align-items: center;
+        }
+
+        #about img {
+            max-width: 150px;
+            border-radius: var(--border-radius);
+            margin-right: 20px;
+        }
+
+        /* Character */
+        #character-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        #anime-character {
+            width: 120px;
+            height: auto;
+        }
+
+        /* Theme Toggle */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            border: none;
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+
+        #theme-toggle:hover {
+            background-color: #0092cf; /* Darker Coral */
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background-color: #e4faf7; /* Darker Slate */
+            color: var(--text-light);
+        }
+
+        .dark-mode .main-content, .dark-mode .sidebar {
+            background-color: #188c7d; /* Slightly Lighter Dark Slate */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode h2, .dark-mode h3 {
+            color: var(--accent-color);
+        }
+
+        .dark-mode #about img {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode nav a {
+            color: var(--text-light);
+        }
+
+        .dark-mode #theme-toggle {
+            background-color: #c0392b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 5px 0;
+		color: #f2f2f2;
+            }
+
+            #about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #about img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            #character-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#interests">Interests</a></li>
+                    <li><a href="#languages">Languages</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="RESUME\SATHYA RESUME.pdf" download><i class="fa fa-download"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <button id="theme-toggle">Try Me</button>
+
+    <main>
+        <div class="container">
+            <div class="main-content">
+                <section id="about">
+                    <img src="RESUME\photo.jpeg" alt="Sathya R">
+                    <div>
+                         <h2>SATHYA R - FULL STACK PYTHON DEVELOPER</h2>
+                        <p>
+                            To provide additional context regarding my professional background, I would like to highlight my recent project portfolio and certifications. These credentials underscore my experience in data science, web development, and artificial intelligence integration.
+                        </p>
+                        <p>
+                            My academic qualifications include a <strong>Master’s in Computer Science and Engineering</strong>. Furthermore, I have successfully completed a professional course in <strong>Data Science and Artificial Intelligence with Python from the Indian Institute of Management (IIM)</strong>. These academic pursuits, combined with my practical project experience, have contributed to a robust foundation in both the theoretical and applied domains of data science and development.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="certifications">
+                    <h2>Certifications</h2>
+                    <ul>
+                        <li><a href="https://www.credential.net/98e4f20c-b0e3-41ee-ac0b-a7db818a86e1" download> <i class="fas fa-trophy"></i> IIM Certificate in Data Science and Artificial Intelligence</li> </a>
+                        <li><a href="RESUME\certificates\full stack developer.pdf"> <i class="fas fa-trophy"></i>Full Stack Web Developer and AI with Python</li></a>
+		        <li><a href="https://www.kaggle.com/certification/badges/sathyaravitheeradev/30" download> <i class="fas fa-trophy"></i>Python Coder</li></a>
+		        <li><a href="https://www.kaggle.com/certification/badges/sathyaravitheeradev/39" download> <i class="fas fa-trophy"></i>Notebook Modeler</li></a>
+			<li><a href="https://www.kaggle.com/certification/badges/sathyaravitheeradev/13"><i class="fas fa-trophy"></i></i>Code Submitter</li></a>
+			<li><a href="https://www.kaggle.com/certification/badges/sathyaravitheeradev/13"><i class="fas fa-trophy"></i></i>Research Competitor</li></a>
+			<li><a href="RESUME\certificates\GoogleDigitalMarketing.pdf"><i class="fas fa-trophy"></i>Digital Marketing</li></a>
+                        <li><a href="RESUME\certificates\Reactjs.pdf"><i class="fas fa-trophy"></i>React JS</li></a>
+                        <li><a href="RESUME\certificates\pinterestcertificate.pdf"><i class="fas fa-trophy"></i>Pinterest</li></a>
+			<li><a href="https://www.kaggle.com/certification/badges/sathyaravitheeradev/9"><i class="fas fa-trophy"></i></i>Kaggle Playground Competitor</li></a>
+			<li><a href="https://www.kaggle.com/certification/badges/sathyaravitheeradev/5"><i class="fas fa-trophy"></i></i>Kaggle Competitor</li></a>
+                    </ul>
+                    
+                </section>
+
+                <section id="skills">
+                    <h2>Skills</h2>
+                    <ul>
+                        <li><b>Programming Languages: </b> Python (Advanced), JavaScript (Proficient)</li>
+			<li><b>Web Development:</b> Django (Expert), ReactJS (Advanced), HTML5/CSS3 (Advanced)</li>
+    			<li><b>Data Science & Machine Learning: </b>Machine Learning (Proficient), Deep Learning (Intermediate), Data Visualization (Expert)</li>
+			<li><b>Databases:</b>  PostgreSQL (Advanced), MySQL (Advanced)</li>
+			<li><b>WebScraping:</b> BeautifulSoup(Proficient), Scrapy(Proficient)</li>
+			<li><b>Tools & Technologies:</b> Docker (Proficient), Jupyter Notebooks (Advanced)</li>
+			<li><b>Version Control: </b> Git (Proficient), GitHub (Proficient)</li>
+                    </ul>
+                </section>
+
+                <section id="experience">
+                    <h2>Experience</h2>
+                    <h3>Developer - IT Developer at ExaSpice Media Pvt Ltd</h3>
+			 <h4>Senior Developer (2020 - 2022)</h4>
+			<ul><li>Led the development of risk analytics solutions, resulting in a 15 improvement in prediction accuracy by selecting and implementing optimal machine learning algorithms.</li>
+			<li>Developed and maintained Python-based automation tools that reduced data processing time by 20%.</li>
+			<li>Mentored junior developers and provided technical guidance on complex projects, enhancing team productivity.</li>
+			<li>Developed and deployed RESTful APIs using Django REST Framework, enabling seamless data exchange between front-end and back-end systems.</li>
+			<li>Designed and implemented scalable back-end solutions using Python and Django, integrating with various third-party APIs to enhance application functionality.
+Collaborated with front-end developers to ensure smooth integration of APIs, optimizing data flow and user experience.</li>
+			<li>Implemented robust authentication and authorization mechanisms for APIs, ensuring data security and compliance with industry standards.
+Optimized application performance by implementing efficient database queries and API caching strategies.</li>
+			<li>Conducted thorough code reviews and implemented best practices for API development, ensuring code quality and maintainability.</li></ul>
+                    
+		<h4>Junior Developer (2017 - 2020)</h4>
+                    <ul><li>Collaborated with cross-functional teams to design and implement interactive data visualization solutions using Power BI, improving data accessibility for stakeholders.</li>
+                    <li>Collaborated with cross-functional teams to design and implement data visualization solutions using Power BI.</li>
+                    <li>Automated data processing and reporting tasks using Python, significantly reducing manual effort and improving efficiency.</li></ul>
+			
+                </section>
+
+                <section id="education">
+                    <h2>Education</h2>	
+                    <p><b>Master of Engineering in Computer Science- Anna University</b></p>
+		    <p>GPA: 8.5/10</p>
+                    <p><i class="fa">&#xf19d;</i> Graduated: June 2016</p>
+		    <p>Relevant Coursework: Advanced Algorithms, Artificial Intelligence, Database Systems, Software Engineering.</p>
+		    <p>Successfully completed a research project on Big Data, Handling healthcare Record.</p>
+		    <p><b>Bachelor of Engineering in Computer Science- Anna University</b></p>
+		    <p><i class="fa">&#xf19d;</i> Graduated: June 2014</p>
+		    <p>Relevant Coursework: Data Structures, Object-Oriented Programming, Web Development, Operating Systems.</p>
+		    <p>Developed a Matlab model as a final year project, finding the optical problem with the image.</p>
+                </section>
+
+                <section id="projects">
+                    <h2>Projects</h2>
+
+		    <p><b>Django Project – Free Educational Portal with AI Chat Assistant (Solo Project)</b> 
+ <ul><li>Developed MetaEdge AI, a Django-based platform providing free educational resources and study materials to over 500 users within the first month of launch.</li>
+<li>Integrated the Gemini API to create an AI-powered chatbot, reducing user query resolution time by 30%.</li>
+<li>Implemented user-friendly interface and optimized database queries, resulting in a 25% improvement in page load speed.</li></ul></p>			
+                    
+		    <p><b>Generative AI - My Portfolio Power-Up(Solo Project) </b> 
+<ul><li>Explored the potential of generative AI in narrative creation, demonstrating the ability to use AI tools for creative content generation.</li>
+<li>Generated a series of narrative pieces using AI models, showcasing the stylistic consistencies and creative potential of AI-generated content.</li>
+<li>Conducted an experimental study on the application of AI in storytelling, documenting the process and findings in a comprehensive report.</li></ul></p>
+		    
+		 <p><b>ReactJS Project – VFX Media Services Website (Team Size: 3)</b> 
+<ul><li>Built a dynamic media service website for Hollywood VFX and 3D animation studios, resulting in a 40% increase in client engagement.</li>
+<li>Collaborated on front-end architecture using ReactJS, responsive design, and integrated REST APIs for real-time content updates.</li>
+<li>Implemented an interactive showreel gallery, asset showcase, and blog section, enhancing user experience and content accessibility.</li></ul></p>
+     
+		 <p><b>Machine learning - Loan Eligibility Prediction(Solo Project)</b> 
+<ul><li>Developed a machine learning model using logistic regression and decision trees to predict loan eligibility with 85% accuracy.</li>
+<li>Conducted extensive data cleaning and feature engineering, improving data quality and model performance.</li>
+<li>Created interactive visualizations to present model results, enhancing stakeholder understanding and decision-making.</li></ul></p>
+               <p><b>BI Developer</b>  <ul><li>Improved business decision-making by developing a unified data warehouse (MetaEdge Global Supplier BI) that consolidated multiple data sources.</li> 
+<li>This centralized system provided key management insights into invoice amounts, distribution, and payments, streamlining financial analysis.</li><br>
+<b>Key Responsibilities:</b>
+<li>Conducted requirement analysis and planning, ensuring accurate project scope and deliverables.</li>
+<li>Performed unit testing and bug fixing, guaranteeing data integrity and system reliability.</li>
+<li>Generated ad-hoc reports in Excel and PowerPoint, delivering actionable insights to stakeholders.</li></ul></p>
+                    <p><b>Sales Lead Scoring</b> <ul><li>Successful sales organizations understand the importance of effective lead management. By analyzing sales leads, businesses can uncover valuable insights, optimize their sales processes, and ultimately drive more revenue. This comprehensive guide will cover the key elements of sales lead analysis, from defining leads and qualifying criteria to segmentation, nurturing, and data optimization.</li></ul></p>
+                    <p><b>Power BI</b>  <ul><li>Developed a comprehensive Power BI solution for ExaSpice, enabling holistic monitoring of organizational performance and driving actionable results.</li> 
+<li>This involved connecting to cloud CRM data sources to provide intuitive visualizations of key business performance indicators.</li><br>
+                    <b>Key Responsibilities:</b>
+			<ul>
+			<Li>Analyzed customer profitability across various segments (industry, loan type, geography).</Li>
+			<Li>Provided insights into revenue channel performance and leveraged historical data for strategic decision-making.</Li>
+			<Li>Set strategic KPI targets and implemented live-updating dashboards for real-time business insights.</Li>
+			</ul></p>
+                </section>
+
+                <section id="achievements">
+                    <h2>Professional Development</h2>
+                    <ul>
+                        <li>Participated in an Android Application Development workshop at <b>IIT Madras</b>, enhancing mobile development skills.</li>
+                        <li>Published a paper in IJETCSE titled  <b>Effective Privacy Preserving method in Big Data Analytics for Healthcare Records</b> , showcasing research and technical writing abilities.</li>
+                        <li>Presented on Big Data at engineering colleges (SKR, S.A, and Easwari), demonstrating communication and presentation skills.</li>
+                        <li>Participated workshop on <b>Cyber Crime investigation & Forensics at Data64 Techno Solutions</b>, Vel Tech and Apollo Engineering college and IV at BSNL.</li>
+                        <li>Completed In-Plant training at <b>HCL and U.N.I.Q technologies</b>.</li>
+                    </ul>
+                </section>
+
+                <section id="languages">
+                    <h2>Languages</h2>
+                    <ul>
+                        <li>English</li>
+                        <li>Hindi</li>
+                        <li>Tamil</li>
+                        <li>French</li>
+                    </ul>
+                </section>
+
+                <section id="interests">
+                    <h2>Interests</h2>
+                    <ul>
+                        <li><i class="fa">&#xf030;</i> Photography</li>
+                        <li><i class="fa">&#xf040;</i> Design</li>
+                        <li><i class='fas'>&#xf7a6;</i> Violin</li>
+                        <li><i class='fas'>&#xf109;</i> Editing</li>
+                        <li><i class='fas'>&#xf5b0;</i> Travel</li>
+                    </ul>
+                </section>
+
+                <section id="contact">
+                    <h2>Contact</h2>
+                    <p><i class="fa">&#xf095;</i> +91 8072785122</p>
+                    <p><i class="fa">&#xf003;</i> sathyapravi15@gmail.com</p>
+                    <p><i class="fa">&#xf015;</i> Mumbai</p>
+                </section>
+            </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Thanks for your time &copy; All Rights Reserved. 2025 SATHYA</p>
+        </div>
+    </footer>
+
+    <div id="character-container">
+        <img src="RESUME\character.png" alt="Anime Character" id="anime-character">
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Anime Character Animation
+        const characterContainer = document.getElementById('character-container');
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            targetX = event.clientX - characterContainer.offsetWidth / 2;
+            targetY = event.clientY - characterContainer.offsetHeight / 2;
+        });
+
+        function animate() {
+            const dx = targetX - currentX;
+            const dy = targetY - currentY;
+
+            currentX += dx * 0.1;
+            currentY += dy * 0.1;
+
+            characterContainer.style.left = currentX + 'px';
+            characterContainer.style.top = currentY + 'px';
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
